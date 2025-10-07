@@ -1,0 +1,6 @@
+[submodule "aicd"]
+	path = aicd
+	url = git@github.com:iic-jku/analog-circuit-design.git
+[submodule "rfic"]
+	path = rfic
+	url = git@github.com:iic-jku/radio-frequency-integrated-circuits.git
