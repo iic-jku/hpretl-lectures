@@ -1,0 +1,4 @@
+steps:
+  - uses: runsascoded/update-submodules@v1
+    with:
+      token: ${{ secrets.GITHUB_TOKEN }}
