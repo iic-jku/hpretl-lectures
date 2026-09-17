@@ -4,3 +4,6 @@
 [submodule "rfic"]
 	path = rfic
 	url = git@github.com:iic-jku/radio-frequency-integrated-circuits.git
+[submodule "dcic"]
+	path = dcic
+	url = git@github.com:iic-jku/design-complex-ic.git

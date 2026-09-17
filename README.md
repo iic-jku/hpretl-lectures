@@ -4,3 +4,4 @@ Here is the collection of lectures of Harald Pretl, head of the Department for I
 
 - [Analog Integrated Circuit Design](https://iic-jku.github.io/analog-circuit-design/analog_circuit_design.html)
 - [Radio-Frequency Integrated Circuits](https://iic-jku.github.io/radio-frequency-integrated-circuits/rfic.html)
+- [Design of Complex Integrated Circuits](https://iic-jku.github.io/design-complex-ic/dcic.html)
