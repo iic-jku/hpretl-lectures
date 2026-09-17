@@ -1,4 +1,37 @@
-steps:
-  - uses: runsascoded/update-submodules@v1
-    with:
-      token: ${{ secrets.GITHUB_TOKEN }}
+name: Update submodules
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-submodules
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Update submodules to latest
+        run: |
+          # .gitmodules uses SSH URLs; all submodules are public, so fetch over HTTPS
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+          git submodule update --init --remote
+          git submodule status
+
+      - name: Commit and push
+        run: |
+          if git diff --quiet; then
+            echo "Submodules already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898279+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Update submodules to latest"
+          git push
