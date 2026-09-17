@@ -1,0 +1,28 @@
+name: Check slide tools
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Fetch latest lectures
+        run: |
+          # .gitmodules uses SSH URLs; all submodules are public, so fetch over HTTPS
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+          git submodule update --init --remote
+
+      - name: Compare slides/_tools of all lectures
+        run: ./check-slide-tools.sh
